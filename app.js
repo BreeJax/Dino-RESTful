@@ -69,14 +69,21 @@ let allDinos = [
   }
 ]
 
-app.get("/api/dino", (request, responce) => {
+app.get("/api/dinos", (request, responce) => {
+  responce.json(allDinos) //sending json back to my user
+})
+app.get("/api/dinos/:id", (request, responce) => {
   responce.json(allDinos) //sending json back to my user
 })
 
-app.get("/api/dinos", (request, responce) => {
+app.get("/api/dinos/:id/habitats", (request, responce) => {
   responce.json(allDinos)
 })
 
 app.listen(3000, () => {
   console.log("I've got the magic in me!")
 })
+
+// POST /api/dinosaurs
+// PUT /api/dinosaurs/:id
+// DELETE /api/dinosaurs/:id
