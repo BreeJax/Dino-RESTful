@@ -73,10 +73,49 @@ app.get("/api/dinos", (request, responce) => {
   responce.json(allDinos) //sending json back to my user
 })
 app.get("/api/dinos/:id", (request, responce) => {
-  responce.json(allDinos) //sending json back to my user
+  const DinoId = parseInt(request.params.id)
+  const thisDino = allDinos.find(dino => {
+    return dino.id === DinoId
+  })
+  responce.json(thisDino) //sending json back to my user
 })
 
 app.get("/api/dinos/:id/habitats", (request, responce) => {
+  responce.json(allDinos)
+})
+
+app.post("/api/dinos", (request, responce) => {
+  let newDino = {
+    id: allDinos.length + 1,
+    name: request.body.name,
+    color: request.body.color,
+    size: request.body.size,
+    weight: request.body.weight,
+    Habitats: request.body.Habitats
+  }
+  allDinos.push(newDino)
+  responce.json(newDino)
+})
+
+app.put("/api/dinos/:id", (request, responce) => {
+  let updateDino = dino.find(oneDino => oneDino.id === parseInt(req.params.id))
+
+  updateDino.name = req.body.name || updateDino.name
+  updateDino.color = req.body.color || updateDino.color
+  updateDino.size = req.body.size || updateDino.size
+  updateDino.weight = req.body.weight || updateDino.weight
+  updateDino.habitats = req.body.Habitats || updateDino.Habitats
+
+  dino.splice(req.params.id - 1, 1, updateDino)
+  //.splice(where in array, how many to delete after array index position, what to insert in array)
+
+  res.json(dinosaurs)
+})
+
+app.delete("/api/dinos/:id", (request, responce) => {
+  const DinoId = parseInt(request.params.id)
+  allDinos = allDinos.filter(dino => dino.id !== DinoId)
+  //"==" checks the parameters and the value of the thing that it is checking
   responce.json(allDinos)
 })
 
@@ -84,6 +123,4 @@ app.listen(3000, () => {
   console.log("I've got the magic in me!")
 })
 
-// POST /api/dinosaurs
 // PUT /api/dinosaurs/:id
-// DELETE /api/dinosaurs/:id
