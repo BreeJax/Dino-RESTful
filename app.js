@@ -98,18 +98,18 @@ app.post("/api/dinos", (request, responce) => {
 })
 
 app.put("/api/dinos/:id", (request, responce) => {
-  let updateDino = dino.find(oneDino => oneDino.id === parseInt(req.params.id))
+  let updateDino = allDinos.find(oneDino => oneDino.id === parseInt(request.params.id))
 
-  updateDino.name = req.body.name || updateDino.name
-  updateDino.color = req.body.color || updateDino.color
-  updateDino.size = req.body.size || updateDino.size
-  updateDino.weight = req.body.weight || updateDino.weight
-  updateDino.habitats = req.body.Habitats || updateDino.Habitats
+  updateDino.name = request.body.name || updateDino.name
+  updateDino.color = request.body.color || updateDino.color
+  updateDino.size = request.body.size || updateDino.size
+  updateDino.weight = request.body.weight || updateDino.weight
+  updateDino.habitats = request.body.Habitats || updateDino.Habitats
 
-  dino.splice(req.params.id - 1, 1, updateDino)
+  allDinos.splice(request.params.id - 1, 1, updateDino)
   //.splice(where in array, how many to delete after array index position, what to insert in array)
 
-  res.json(dinosaurs)
+  responce.json(allDinos)
 })
 
 app.delete("/api/dinos/:id", (request, responce) => {
