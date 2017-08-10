@@ -1,0 +1,12 @@
+p {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25em;
+}
+img {
+  width: 15em;
+  height: 10em;
+}
+li {
+  list-style: lower-greek;
+}

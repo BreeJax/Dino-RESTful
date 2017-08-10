@@ -1,31 +1,33 @@
-Activity: RESTful Dinos - Pair Programming
+Level 1 (basic CRUD)
 
-We're going to create a RESTful API for our dinosaur collection! There are a couple of things you'll need to employ to accomplish this; You'll need to add API endpoints that will allow you to read, create, delete and edit dinosaurs from your program or database. You're only going to use Postman to test and work with your API. You do not need to build a website.
+Create a website that manages the dinosaurs:
 
-Dinosaur Properties
+Requirements
 
-We want our dinosaurs to have at least these properties:
+-Displays all the dinosaurs in the API that only shows the name and a picture of that dinosaur ( HINT: you will have to imageUrl to a dinosaur)
+-When a user clicks on a dinosaur, you are taken to a Dinosaur page that displays all the information for that dinosaurs
+-Add page to create dinosaurs
+-On that dinosaur's page, there should be an edit button and a delete button
+-the delete button should delete the dinosaur from the API and then redirect to the homepage
+-the edit button should allow the user to edit the dinorsaur
+HINTS:
+-this should be in the same node project.
+-this will use DOM more manipulation and less mustache than other back end projects
+-feel free to have fun with the design
+-feel free to add columns that support a musuem exhibit
+-this may feel like a lot, but focus on requirement at a time and try to reuse the client javascript as much as possible.
+Level 2 (features for customers)
 
-An identifying primary key
-A name
-A color
-A size/weight
-A set of habitats that it may belong to (i.e., jungle, mountain, plain, desert, etc.)
-Remember to use notes from todays lecture as a point of reference.
+Create a couple of webpage and features for the museum goers to view and learn about dinosaurs
 
-Endpoints
+Requirements
 
-GET /api/dinosaurs
-GET /api/dinosaurs/:id
-GET /api/dinosuars/:id/habitats
-POST /api/dinosaurs
-PUT /api/dinosaurs/:id
-DELETE /api/dinosaurs/:id
-Level 1
+-Add a new display all dinosaurs page that shows all the dinosaurs in a mobile friendly UI.
+-Allow the musuem goer to view more data about the dinosaur but not have them edit the information or delete the information
+-Add a search to the API and a allow a museum goer to search for a dinosaur
+HINTS:
 
-create a new repository and project
-Implement all the above endpoints using a array as your database (like we did in class)
-Level 2
-
-Create and use a database for your dinosaurs using Postgres & pg-promise. You'll be using some SQL keywords we may not have covered (ALTER, DELETE, etc.).
-Your role as a student
+-Remember that the same template can be used for different routes
+-Do not worry about authentication
+-Have fun with the mobile friendly design
+-Some of these requirements are purposefully a little vague to practice working with real-world requirements, ask questions if you are lost.

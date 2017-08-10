@@ -15,13 +15,12 @@ app.use(bodyParser.json())
 
 app.engine("mustache", mustacheExpress())
 
-app.get("/", (request, responce) => {
-  responce.render("index", { allDinos: allDinos })
-})
 let allDinos = [
   {
     id: 1,
     name: "Little foot",
+    imageurl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSELUUCwxPk1IpH89o-fe2r7H4Qs9ctuu_of_okITshUpXwuS9c",
     color: "Brown",
     size: "3 feet tall",
     weight: "As heavy as his Grandpa's Toe",
@@ -30,6 +29,7 @@ let allDinos = [
   {
     id: 2,
     name: "Cera",
+    imageurl: "https://i.ytimg.com/vi/lAi7p151PUY/maxresdefault.jpg",
     color: "orange",
     size: "2 feet tall",
     weight: "As heavy as her mother's tail",
@@ -38,6 +38,8 @@ let allDinos = [
   {
     id: 3,
     name: "Ducky",
+    imageurl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmfgZkrtR1jbA54w2uiWDfVkk8mDQhtiyx149bV3leIb1Z-G4Y",
     color: "Green",
     size: "1 foot tall",
     weight: "As heavy as a milk jug",
@@ -46,6 +48,8 @@ let allDinos = [
   {
     id: 4,
     name: "Petrie",
+    imageurl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8l5me0dgPXlWKI6-TuF-Ai6ZAxs9vK8q5PAh2_v5ABqs59Wwk",
     color: "Brown",
     size: "3 feet tall",
     weight: "As heavy as his Grandpa's Toe",
@@ -54,6 +58,8 @@ let allDinos = [
   {
     id: 5,
     name: "Spike",
+    imageurl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRoC1_YRQQE8BOYOcxFesKGCVty6_GfCALmJjYEZ7eizWWekT5",
     color: "Green",
     size: "3 feet long",
     weight: "As heavy as 4 watermelons",
@@ -62,6 +68,8 @@ let allDinos = [
   {
     id: 6,
     name: "Chomper",
+    imageurl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnTg163_EmYwMPYKlrlyUFTXrd1hdpmNBAdjmUMN2PIUnQy2LZhQ",
     color: "Brown-Purple",
     size: "2.5 feet tall",
     weight: "As heavy as four golden retrivers",
@@ -69,22 +77,41 @@ let allDinos = [
   }
 ]
 
-app.get("/api/dinos", (request, responce) => {
-  responce.json(allDinos) //sending json back to my user
+// app.get("/", (request, response) => {
+//   response.render("index")
+// })
+//
+// app.get("/data", (request, response) => {
+//   response.json(allDinos)
+// })
+//
+// app.get("/:id", (request, response) => {
+//   const id = req.params.id
+//
+//   res.render("profile")
+// })
+
+//under this is everything from the day before- don't touch
+app.get("/", (request, response) => {
+  response.render("index", { allDinos: allDinos })
 })
-app.get("/api/dinos/:id", (request, responce) => {
+
+app.get("/api/dinos", (request, response) => {
+  response.json(allDinos) //sending json back to my user
+})
+app.get("/api/dinos/:id", (request, response) => {
   const DinoId = parseInt(request.params.id)
   const thisDino = allDinos.find(dino => {
     return dino.id === DinoId
   })
-  responce.json(thisDino) //sending json back to my user
+  response.json(thisDino) //sending json back to my user
 })
 
-app.get("/api/dinos/:id/habitats", (request, responce) => {
-  responce.json(allDinos)
+app.get("/api/dinos/:id/habitats", (request, response) => {
+  response.json(allDinos)
 })
 
-app.post("/api/dinos", (request, responce) => {
+app.post("/api/dinos", (request, response) => {
   let newDino = {
     id: allDinos.length + 1,
     name: request.body.name,
@@ -94,10 +121,10 @@ app.post("/api/dinos", (request, responce) => {
     Habitats: request.body.Habitats
   }
   allDinos.push(newDino)
-  responce.json(newDino)
+  response.json(newDino)
 })
 
-app.put("/api/dinos/:id", (request, responce) => {
+app.put("/api/dinos/:id", (request, response) => {
   let updateDino = allDinos.find(oneDino => oneDino.id === parseInt(request.params.id))
 
   updateDino.name = request.body.name || updateDino.name
@@ -109,18 +136,16 @@ app.put("/api/dinos/:id", (request, responce) => {
   allDinos.splice(request.params.id - 1, 1, updateDino)
   //.splice(where in array, how many to delete after array index position, what to insert in array)
 
-  responce.json(allDinos)
+  response.json(allDinos)
 })
 
-app.delete("/api/dinos/:id", (request, responce) => {
+app.delete("/api/dinos/:id", (request, response) => {
   const DinoId = parseInt(request.params.id)
   allDinos = allDinos.filter(dino => dino.id !== DinoId)
   //"==" checks the parameters and the value of the thing that it is checking
-  responce.json(allDinos)
+  response.json(allDinos)
 })
 
 app.listen(3000, () => {
   console.log("I've got the magic in me!")
 })
-
-// PUT /api/dinosaurs/:id

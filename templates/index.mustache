@@ -2,25 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles.css">
     <title></title>
   </head>
   <body>
     <h2>The Land Before Time Dino's</h2>
     <section id="output">
 
-    </section>
-    <section id="serverRender">
-      {{#allDinos}}
-      <p>This is {{name}}.
-      {{name}} is {{color}} in body coloring.
-      How heavy is this dino? About {{weight}}.</p>
-      <h4>{{name}} can live in these types of areas:</h4>
-      <ul>
-        {{#Habitats}}
-        <li>{{.}}</li>
-        {{/Habitats}}
-      </ul>
-      {{/allDinos}}
     </section>
     <script type="text/javascript" src="main.js"></script>
   </body>
