@@ -81,6 +81,13 @@ app.get("/", (request, response) => {
   response.render("index", { allDinos: allDinos })
 })
 
+app.post("/DinoId/:id/delete", (request, response) => {
+  const DinoId = parseInt(request.params.id)
+  allDinos = allDinos.filter(dino => dino.id !== DinoId)
+  //"==" checks the parameters and the value of the thing that it is checking
+  response.redirect("/")
+})
+
 app.get("/api/dinos", (request, response) => {
   response.json(allDinos) //sending json back to my user
 })
