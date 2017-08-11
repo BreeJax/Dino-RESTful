@@ -9,4 +9,15 @@ img {
 }
 li {
   list-style: lower-greek;
+  font-size: 1.25em;
+}
+body {
+  padding: 5% 20%;
+}
+button {
+  width: 15em;
+  height: 3em;
+  font-size: 1em;
+  background-color: green;
+  color: #f7e0c0;
 }

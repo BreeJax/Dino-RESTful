@@ -77,21 +77,6 @@ let allDinos = [
   }
 ]
 
-// app.get("/", (request, response) => {
-//   response.render("index")
-// })
-//
-// app.get("/data", (request, response) => {
-//   response.json(allDinos)
-// })
-//
-// app.get("/:id", (request, response) => {
-//   const id = req.params.id
-//
-//   res.render("profile")
-// })
-
-//under this is everything from the day before- don't touch
 app.get("/", (request, response) => {
   response.render("index", { allDinos: allDinos })
 })
@@ -99,6 +84,7 @@ app.get("/", (request, response) => {
 app.get("/api/dinos", (request, response) => {
   response.json(allDinos) //sending json back to my user
 })
+
 app.get("/api/dinos/:id", (request, response) => {
   const DinoId = parseInt(request.params.id)
   const thisDino = allDinos.find(dino => {
@@ -109,6 +95,13 @@ app.get("/api/dinos/:id", (request, response) => {
 
 app.get("/api/dinos/:id/habitats", (request, response) => {
   response.json(allDinos)
+})
+app.get("/dinoID/:id", (request, response) => {
+  const dinoId = parseInt(request.params.id)
+  const thisDino = allDinos.find(dino => {
+    return dino.id === dinoId
+  })
+  response.render("thisDino", { dinoId: dinoId }) //sending json back to my user
 })
 
 app.post("/api/dinos", (request, response) => {
