@@ -88,6 +88,19 @@ app.post("/DinoId/:id/delete", (request, response) => {
   response.redirect("/")
 })
 
+app.post("/dinos/:id/edit", (request, response) => {
+  let updateDino = allDinos.find(oneDino => oneDino.id === parseInt(request.params.id))
+
+  updateDino.name = request.body.name || updateDino.name
+  updateDino.color = request.body.color || updateDino.color
+  updateDino.size = request.body.size || updateDino.size
+  updateDino.weight = request.body.weight || updateDino.weight
+  updateDino.habitats = request.body.Habitats || updateDino.Habitats
+
+  allDinos.splice(request.params.id - 1, 1, updateDino)
+  response.redirect("/")
+})
+
 app.get("/api/dinos", (request, response) => {
   response.json(allDinos) //sending json back to my user
 })
@@ -122,8 +135,10 @@ app.post("/api/dinos", (request, response) => {
   }
   allDinos.push(newDino)
   response.json(newDino)
+  response.render("/index")
 })
 
+//this is for edit. The form goes over this.
 app.put("/api/dinos/:id", (request, response) => {
   let updateDino = allDinos.find(oneDino => oneDino.id === parseInt(request.params.id))
 
